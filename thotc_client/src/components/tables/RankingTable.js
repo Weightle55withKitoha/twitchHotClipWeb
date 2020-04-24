@@ -1,5 +1,15 @@
-import React from "react";
-import { Paper, TableContainer, Table, Container } from "@material-ui/core";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Paper,
+  Container,
+  AppBar,
+  Typography,
+  Box,
+  Tabs,
+  Tab,
+  Grid,
+} from "@material-ui/core";
 import TableHead from "./UpperTable";
 import TableLower from "./LowerTable";
 import TableToolbar from "./TableToolbar";
@@ -47,20 +57,62 @@ const rows = [
   createData(10, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
 ];
 
-const rankingTable = () => {
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
+  };
+}
+
+const useStyle = makeStyles((theme) => ({
+  tab: {
+    color: "#e53e3e",
+    minWidth: "50px",
+    width: "50px",
+  },
+  indicator: {
+    backgroundColor: "white",
+  },
+}));
+
+const RankingTable = () => {
+  const classes = useStyle();
+  const [value, setValue] = useState(2);
+  const bottomColors = ["#e53e3e", "#d69e2e", "#805ad5", "#dd6b20", "#38a169"];
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <Container style={{ marginTop: 50 }} maxWidth="lg">
       <Paper>
         <TableToolbar></TableToolbar>
-        <TableContainer>
-          <Table aria-label="ranking table">
-            <TableHead headCells={headCells}></TableHead>
-            <TableLower rowCells={rows}></TableLower>
-          </Table>
-        </TableContainer>
+        <Grid>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            TabIndicatorProps={{
+              style: {
+                background: bottomColors[value - 2],
+                color: "white",
+              },
+            }}
+            variant="fullWidth"
+          >
+            <Tab label="순위" disabled />
+            <Tab label="스트리머" disabled />
+            <Tab label="실시간 채팅속도" {...a11yProps(0)} />
+            <Tab label="실청자" {...a11yProps(1)} />
+            <Tab label="팔로워" {...a11yProps(2)} />
+            <Tab label="방송시간" {...a11yProps(3)} />
+            <Tab label="마지막방송" {...a11yProps(4)} />
+          </Tabs>
+        </Grid>
+        <TableLower rowCells={rows}></TableLower>
       </Paper>
     </Container>
   );
 };
 
-export default rankingTable;
+export default RankingTable;
