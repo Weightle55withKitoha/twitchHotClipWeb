@@ -79,18 +79,33 @@ const RankingTable = () => {
   const classes = useStyle();
   const [value, setValue] = useState(2);
   const bottomColors = ["#e53e3e", "#d69e2e", "#805ad5", "#dd6b20", "#38a169"];
-  const [sstyle,setSstyle] = useState(0);
+  const [sstyle, setSstyle] = useState([0, 0, 0, 0, 0]);
   const style2 = [
-    { background: "#000000", color: "#ffffff" },
     { background: "#ffffff", color: "#000000" },
-    { background: "#000000", color: "#ffffff" },
-    { background: "#000000", color: "#ffffff" },
-    { background: "#000000", color: "#ffffff" },
+    { background: "#e53e3e", color: "#ffffff" },
+    { background: "#d69e2e", color: "#ffffff" },
+    { background: "#805ad5", color: "#ffffff" },
+    { background: "#dd6b20", color: "#ffffff" },
+    { background: "#38a169", color: "#ffffff" },
+  ];
+  const tabsNames = [
+    "실시간 채팅속도",
+    "실청자",
+    "팔로워",
+    "방송시간",
+    "마지막방송 시간",
   ];
 
-  const test = event => {
-    console.log("test");
-    setSstyle(1);
+  const test = (index) => {
+    const tmp = sstyle.slice();
+    tmp[index] = index + 1;
+    setSstyle(tmp);
+  };
+
+  const mouseLeave = (index) => {
+    const tmp = sstyle.slice();
+    tmp[index] = 0;
+    setSstyle(tmp);
   };
 
   const handleChange = (event, newValue) => {
@@ -115,37 +130,16 @@ const RankingTable = () => {
           >
             <Tab label="순위" disabled />
             <Tab label="스트리머" disabled />
-            <Tab
-              label="실시간 채팅속도"
-              color="dark"
-              onMouseOver={test}
-              style={style2[sstyle]}
-              {...a11yProps(0)}
-            />
-            <Tab
-              label="실청자"
-              onMouseOver={() => test(1)}
-              style={style2[1]}
-              {...a11yProps(1)}
-            />
-            <Tab
-              label="팔로워"
-              onMouseOver={() => test(2)}
-              style={style2[2]}
-              {...a11yProps(2)}
-            />
-            <Tab
-              label="방송시간"
-              onMouseOver={() => test(3)}
-              style={style2[3]}
-              {...a11yProps(3)}
-            />
-            <Tab
-              label="마지막방송"
-              onMouseOver={() => test(4)}
-              style={style2[4]}
-              {...a11yProps(4)}
-            />
+            {tabsNames.map((tabsName, index) => (
+              <Tab
+                key={index}
+                label={tabsName}
+                onMouseOver={() => test(index)}
+                onMouseLeave={() => mouseLeave(index)}
+                style={style2[sstyle[index]]}
+                {...a11yProps(index)}
+              ></Tab>
+            ))}
           </Tabs>
         </Grid>
         <TableLower rowCells={rows}></TableLower>
