@@ -79,6 +79,19 @@ const RankingTable = () => {
   const classes = useStyle();
   const [value, setValue] = useState(2);
   const bottomColors = ["#e53e3e", "#d69e2e", "#805ad5", "#dd6b20", "#38a169"];
+  const style2 = [
+    { background: "#000000", color: "#ffffff" },
+    { background: "#000000", color: "#ffffff" },
+    { background: "#000000", color: "#ffffff" },
+    { background: "#000000", color: "#ffffff" },
+    { background: "#000000", color: "#ffffff" },
+  ];
+
+  const test = (index) => {
+    console.log("test");
+    style2[index] = { ...style2[index], background: bottomColors[index] };
+    console.log(style2[index]);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -102,11 +115,37 @@ const RankingTable = () => {
           >
             <Tab label="순위" disabled />
             <Tab label="스트리머" disabled />
-            <Tab label="실시간 채팅속도" {...a11yProps(0)} />
-            <Tab label="실청자" {...a11yProps(1)} />
-            <Tab label="팔로워" {...a11yProps(2)} />
-            <Tab label="방송시간" {...a11yProps(3)} />
-            <Tab label="마지막방송" {...a11yProps(4)} />
+            <Tab
+              label="실시간 채팅속도"
+              color="dark"
+              onMouseOver={() => test(0)}
+              style={style2[0]}
+              {...a11yProps(0)}
+            />
+            <Tab
+              label="실청자"
+              onMouseOver={() => test(1)}
+              style={style2[1]}
+              {...a11yProps(1)}
+            />
+            <Tab
+              label="팔로워"
+              onMouseOver={() => test(2)}
+              style={style2[2]}
+              {...a11yProps(2)}
+            />
+            <Tab
+              label="방송시간"
+              onMouseOver={() => test(3)}
+              style={style2[3]}
+              {...a11yProps(3)}
+            />
+            <Tab
+              label="마지막방송"
+              onMouseOver={() => test(4)}
+              style={style2[4]}
+              {...a11yProps(4)}
+            />
           </Tabs>
         </Grid>
         <TableLower rowCells={rows}></TableLower>
