@@ -79,18 +79,18 @@ const RankingTable = () => {
   const classes = useStyle();
   const [value, setValue] = useState(2);
   const bottomColors = ["#e53e3e", "#d69e2e", "#805ad5", "#dd6b20", "#38a169"];
+  const [sstyle,setSstyle] = useState(0);
   const style2 = [
     { background: "#000000", color: "#ffffff" },
-    { background: "#000000", color: "#ffffff" },
+    { background: "#ffffff", color: "#000000" },
     { background: "#000000", color: "#ffffff" },
     { background: "#000000", color: "#ffffff" },
     { background: "#000000", color: "#ffffff" },
   ];
 
-  const test = (index) => {
+  const test = event => {
     console.log("test");
-    style2[index] = { ...style2[index], background: bottomColors[index] };
-    console.log(style2[index]);
+    setSstyle(1);
   };
 
   const handleChange = (event, newValue) => {
@@ -118,8 +118,8 @@ const RankingTable = () => {
             <Tab
               label="실시간 채팅속도"
               color="dark"
-              onMouseOver={() => test(0)}
-              style={style2[0]}
+              onMouseOver={test}
+              style={style2[sstyle]}
               {...a11yProps(0)}
             />
             <Tab
