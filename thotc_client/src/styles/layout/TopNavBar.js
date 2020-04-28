@@ -36,8 +36,8 @@ const TopNavBar = () => {
                   MainLogo
               </Typography>
           {
-              NavbarItems.map(item => (
-                  <Typography variant={item.TypoVariant} className={classes.title}>
+              NavbarItems.map((item,index) => (
+                  <Typography variant={item.TypoVariant} className={classes.title} key={index}>
                       {item.menuText}
                   </Typography>
               ))

@@ -23,7 +23,7 @@ const ContentsLayout = () => {
     return (
         <div className = {classes.root}>
             <div className = {classes.main}>
-                {mainContents.map( item => (<div className={classes.contents}>{item}</div>))}
+                {mainContents.map( (item,index) => (<div className={classes.contents} key={index}>{item}</div>))}
             </div>
         </div>
     );
