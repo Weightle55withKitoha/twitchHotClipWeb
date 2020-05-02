@@ -13,4 +13,14 @@ public class GetUsersDto {
         private Integer total;
     }
 
+    @Getter
+    public static class UserInfo{
+        @JsonProperty("id")
+        private String userId;
+        @JsonProperty("profile_image_url")
+        private String profileImgUrl;
+        @JsonProperty("view_count")
+        private Integer viewCount;
+    }
+
 }

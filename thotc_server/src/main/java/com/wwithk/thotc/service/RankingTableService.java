@@ -3,8 +3,11 @@ package com.wwithk.thotc.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wwithk.thotc.dao.AccessTokenDao;
 import com.wwithk.thotc.dto.response.api.GetStreamsDto;
 import com.wwithk.thotc.dto.response.api.GetUsersDto;
+import com.wwithk.thotc.repository.AccessTokenRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,9 +23,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.io.IOException;
 import java.net.URI;
 
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class RankingTableService {
+
+    private final AccessTokenRepository accessTokenRepository;
 
     @Autowired
     RestTemplate restTemplate;
@@ -36,6 +42,9 @@ public class RankingTableService {
     @Value("${spring.TwitchHost}")
     private String twitchHost;
 
+    @Autowired
+    TwitchAccessTokenService twitchAccessTokenService;
+
     public GetStreamsDto.StreamsData getStreamerInfo() throws JsonProcessingException { // 시청수, 스트리머 이름,
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
@@ -43,7 +52,7 @@ public class RankingTableService {
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
                 .path("/helix/streams")
-                .queryParam("first",100)
+                .queryParam("first",1)
                 .queryParam("language","ko")
                 .build();
 
@@ -60,6 +69,7 @@ public class RankingTableService {
     public GetUsersDto.UserFollowsData getFollowingCount(String userId) throws JsonProcessingException{
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
+        twitchAccessTokenService.createAccessToken();
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -71,9 +81,32 @@ public class RankingTableService {
                 HttpMethod.GET,request,String.class);
 
         ObjectMapper objectMapper=new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES,false);
-        GetUsersDto.UserFollowsData userFollowsData=objectMapper.readValue(responseEntity.getBody(),GetUsersDto.UserFollowsData.class);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+        GetUsersDto.UserFollowsData userFollowsData=objectMapper.readValue(responseEntity.getBody(),GetUsersDto.UserFollowsData.class);
         return userFollowsData;
+    }
+
+    public GetUsersDto.UserInfo getUserInfo(String userId) throws JsonProcessingException{
+        HttpHeaders httpHeaders=new HttpHeaders();
+        httpHeaders.add("Client-ID",cliendId);
+        AccessTokenDao accessTokenDao=accessTokenRepository.findFirstElement();
+        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        twitchAccessTokenService.createAccessToken();
+        HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
+        UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
+                .host(twitchHost)
+                .path("/helix/users")
+                .queryParam("id",userId)
+                .build();
+
+        ResponseEntity<String> responseEntity=restTemplate.exchange(uriComponents.toString(),
+                HttpMethod.GET,request,String.class);
+
+        ObjectMapper objectMapper=new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        GetUsersDto.UserInfo userInfo=objectMapper.readValue(responseEntity.getBody(),GetUsersDto.UserInfo.class);
+        return userInfo;
     }
 }

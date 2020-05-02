@@ -5,6 +5,8 @@ import lombok.Data;
 
 @Data
 public class TableInfoResponseDto {
+    private String streamerName;
+    private String streamerImgUrl;
     private int viewerCount;
     private int followerCount;
     private int viewerAverage;
@@ -12,7 +14,9 @@ public class TableInfoResponseDto {
     private int broadcastEndTime;
 
     @Builder
-    public TableInfoResponseDto(int viewerCount,int followerCount,int viewerAverage,int broadcastTime,int broadcastEndTime){
+    public TableInfoResponseDto(String streamerName,String streamerImgUrl,int viewerCount,int followerCount,int viewerAverage,int broadcastTime,int broadcastEndTime){
+        this.streamerName=streamerName;
+        this.streamerImgUrl=streamerImgUrl;
         this.viewerCount=viewerCount;
         this.followerCount=followerCount;
         this.viewerAverage=viewerAverage;
