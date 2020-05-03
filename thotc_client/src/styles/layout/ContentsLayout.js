@@ -1,6 +1,5 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Test from '../../components/Test';
 
 import { BrowserRouter, Route } from "react-router-dom";
 import { RouterConfigs } from "../../configs/RouterConfigs";
