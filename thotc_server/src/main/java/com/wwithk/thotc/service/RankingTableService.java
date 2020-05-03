@@ -28,8 +28,6 @@ import java.net.URI;
 @Service
 public class RankingTableService {
 
-    private final AccessTokenRepository accessTokenRepository;
-
     @Autowired
     RestTemplate restTemplate;
 
@@ -48,11 +46,13 @@ public class RankingTableService {
     public GetStreamsDto.StreamsData getStreamerInfo() throws JsonProcessingException { // 시청수, 스트리머 이름,
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
+        AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
+        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
                 .path("/helix/streams")
-                .queryParam("first",1)
+                .queryParam("first",10)
                 .queryParam("language","ko")
                 .build();
 
@@ -69,7 +69,8 @@ public class RankingTableService {
     public GetUsersDto.UserFollowsData getFollowingCount(String userId) throws JsonProcessingException{
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
-        twitchAccessTokenService.createAccessToken();
+        AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
+        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -90,9 +91,8 @@ public class RankingTableService {
     public GetUsersDto.UserInfo getUserInfo(String userId) throws JsonProcessingException{
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
-        AccessTokenDao accessTokenDao=accessTokenRepository.findFirstElement();
+        AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
         httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
-        twitchAccessTokenService.createAccessToken();
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -106,7 +106,7 @@ public class RankingTableService {
         ObjectMapper objectMapper=new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        GetUsersDto.UserInfo userInfo=objectMapper.readValue(responseEntity.getBody(),GetUsersDto.UserInfo.class);
-        return userInfo;
+        GetUsersDto.UserInfoDatas userInfoDatas=objectMapper.readValue(responseEntity.getBody(),GetUsersDto.UserInfoDatas.class);
+        return userInfoDatas.getUserInfos().get(0);
     }
 }

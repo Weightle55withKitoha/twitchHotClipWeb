@@ -14,6 +14,12 @@ public class GetUsersDto {
     }
 
     @Getter
+    public static class UserInfoDatas{
+        @JsonProperty("data")
+        private List<UserInfo> userInfos;
+    }
+
+    @Getter
     public static class UserInfo{
         @JsonProperty("id")
         private String userId;

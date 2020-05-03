@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Paper,
@@ -13,6 +13,7 @@ import {
 import TableHead from "./UpperTable";
 import TableLower from "./LowerTable";
 import TableToolbar from "./TableToolbar";
+import axios from "axios";
 
 const headCells = [
   { id: "rank", label: "순위", color: "yellow" },
@@ -43,19 +44,6 @@ function createData(
     rowEndBroadCasting,
   };
 }
-
-const rows = [
-  createData(1, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(2, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(3, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(4, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(5, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(6, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(7, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(8, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(9, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-  createData(10, "선바", "4.8개", "3,739", "214,635", "주 35시간", "지금"),
-];
 
 function a11yProps(index) {
   return {
@@ -88,6 +76,7 @@ const RankingTable = () => {
     { background: "#dd6b20", color: "#ffffff" },
     { background: "#38a169", color: "#ffffff" },
   ];
+  const [rows, setRows] = useState(null);
   const tabsNames = [
     "실시간 채팅속도",
     "실청자",
@@ -95,6 +84,12 @@ const RankingTable = () => {
     "방송시간",
     "마지막방송 시간",
   ];
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/streams").then((response) => {
+      setRows(response.data);
+    });
+  }, []);
 
   const test = (index) => {
     const tmp = sstyle.slice();

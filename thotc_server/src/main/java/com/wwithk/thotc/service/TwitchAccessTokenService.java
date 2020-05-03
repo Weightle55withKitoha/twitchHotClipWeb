@@ -62,14 +62,20 @@ public class TwitchAccessTokenService {
 
         return responseEntity.toString();
     }
-/*
-    public AccessTokenDao getAccessToken(){
 
+    public AccessTokenDao getAccessToken() throws JsonProcessingException {
+        AccessTokenDao accessTokenDao=accessTokenRepository.findFirstElement();
+        if(accessTokenDao==null){
+            createAccessToken();
+            accessTokenDao=accessTokenRepository.findFirstElement();
+        }
+        return accessTokenDao;
     }
 
+/*
     public LocalDateTime getAccessTokenExpireTime(){
 
-    }*/
-
+    }
+*/
 
 }

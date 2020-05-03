@@ -1,5 +1,6 @@
 package com.wwithk.thotc.dto.response;
 
+import com.wwithk.thotc.dao.TableInfoDao;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,11 +11,11 @@ public class TableInfoResponseDto {
     private int viewerCount;
     private int followerCount;
     private int viewerAverage;
-    private int broadcastTime;
+    private String broadcastTime;
     private int broadcastEndTime;
 
     @Builder
-    public TableInfoResponseDto(String streamerName,String streamerImgUrl,int viewerCount,int followerCount,int viewerAverage,int broadcastTime,int broadcastEndTime){
+    public TableInfoResponseDto(String streamerName,String streamerImgUrl,int viewerCount,int followerCount,int viewerAverage,String broadcastTime,int broadcastEndTime){
         this.streamerName=streamerName;
         this.streamerImgUrl=streamerImgUrl;
         this.viewerCount=viewerCount;
@@ -22,6 +23,18 @@ public class TableInfoResponseDto {
         this.viewerAverage=viewerAverage;
         this.broadcastTime=broadcastTime;
         this.broadcastEndTime=broadcastEndTime;
+    }
+
+    public TableInfoDao toEntity(){
+        return TableInfoDao.builder()
+                .streamerName(streamerName)
+                .streamerImgUrl(streamerImgUrl)
+                .viewerCount(viewerCount)
+                .followerCount(followerCount)
+                .viewerAverage(viewerAverage)
+                .broadcastTime(broadcastTime)
+                .broadcastEndTime(broadcastEndTime)
+                .build();
     }
 
 }
