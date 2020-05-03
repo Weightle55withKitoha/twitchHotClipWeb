@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   },
   mainLogo : {
     margin : theme.spacing(3)
+  },
+  linkNone : {
+    textDecoration : 'none',
   }
 }));
 
@@ -38,7 +41,7 @@ const TopNavBar = () => {
               </Typography>
           {
               NavbarItems.map((item,index) => (
-                <Link to={item.linkto} >
+                <Link to={item.linkto} className={classes.linkNone} >
                   <Typography variant={item.TypoVariant} className={classes.title} key={index}>
                       {item.menuText}
                   </Typography>
