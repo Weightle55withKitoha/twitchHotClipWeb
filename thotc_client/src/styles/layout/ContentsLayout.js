@@ -1,6 +1,9 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import { mainContents } from '../../configs/ContentsLayoutConfigs';
+import Test from '../../components/Test';
+
+import { BrowserRouter, Route } from "react-router-dom";
+import { RouterConfigs } from "../../configs/RouterConfigs";
 
 const useStyles = makeStyles(theme => ({
     root : {
@@ -20,10 +23,17 @@ const useStyles = makeStyles(theme => ({
 
 const ContentsLayout = () => {
     const classes = useStyles();
+
+    const routeComponents = RouterConfigs.map(
+        ({ path, exact, component }, key) => (
+          <Route path={path} exact={exact} component={component} key={key} />
+        )
+      );
+
     return (
         <div className = {classes.root}>
             <div className = {classes.main}>
-                {mainContents.map( (item,index) => (<div className={classes.contents} key={index}>{item}</div>))}
+               <BrowserRouter>{routeComponents}</BrowserRouter>
             </div>
         </div>
     );

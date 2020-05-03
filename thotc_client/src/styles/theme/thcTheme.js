@@ -19,6 +19,4 @@ const customTheme = createMuiTheme({
     spacing : [0,2,4,8] 
 });
 
-
-
 export default customTheme;
