@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { NavbarItems } from '../../configs/NavbarItemConfigs';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +38,11 @@ const TopNavBar = () => {
               </Typography>
           {
               NavbarItems.map((item,index) => (
+                <Link to={item.linkto} >
                   <Typography variant={item.TypoVariant} className={classes.title} key={index}>
                       {item.menuText}
                   </Typography>
+                </Link>
               ))
           }
         </Toolbar>

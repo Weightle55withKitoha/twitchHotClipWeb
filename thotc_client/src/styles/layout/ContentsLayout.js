@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 
-import { BrowserRouter, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { RouterConfigs } from "../../configs/RouterConfigs";
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +32,9 @@ const ContentsLayout = () => {
     return (
         <div className = {classes.root}>
             <div className = {classes.main}>
-               <BrowserRouter>{routeComponents}</BrowserRouter>
+                <Switch>
+               {routeComponents}
+               </Switch>
             </div>
         </div>
     );
