@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
       justifyContent : 'flex-start',
       width : '100%',
       maxWidth : theme.contentsMaxwidth,
-      backgroundColor : '#756650',
+      // backgroundColor : '#756650',
   },
   title: {
-    backgroundColor : '#5f7a82',
+    // backgroundColor : '#5f7a82',
     margin : theme.spacing(3)
   },
   mainLogo : {
