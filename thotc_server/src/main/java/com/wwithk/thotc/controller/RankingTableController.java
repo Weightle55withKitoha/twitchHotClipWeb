@@ -39,6 +39,7 @@ public class RankingTableController {
 
             Integer currentViewerAverage=0;
 
+
             TableInfoResponseDto tableInfoResponseDto=TableInfoResponseDto.builder()
                     .streamerName(streamsData.getData().get(i).getUserName())
                     .streamerImgUrl(userInfo.getProfileImgUrl())
