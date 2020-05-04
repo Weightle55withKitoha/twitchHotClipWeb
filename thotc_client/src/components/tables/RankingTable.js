@@ -15,6 +15,8 @@ import TableLower from "./LowerTable";
 import TableToolbar from "./TableToolbar";
 import axios from "axios";
 
+import ChatIcon from '@material-ui/icons/Chat';
+
 const headCells = [
   { id: "rank", label: "순위", color: "yellow" },
   { id: "streamer", label: "스트리머", color: "yellow" },
@@ -80,6 +82,7 @@ const RankingTable = () => {
   const tabsNames = [
     "실시간 채팅속도",
     "실청자",
+    "평청자",
     "팔로워",
     "방송시간",
     "마지막방송 시간",
@@ -108,9 +111,9 @@ const RankingTable = () => {
   };
 
   return (
-    <Container style={{ marginTop: 50 }} maxWidth="lg">
-      <Paper>
-        <TableToolbar></TableToolbar>
+    <Container style={{ marginTop: 50}} maxWidth="lg" >
+      <Paper elevation={7}>
+        <TableToolbar/>
         <Grid>
           <Tabs
             value={value}
@@ -128,7 +131,7 @@ const RankingTable = () => {
             {tabsNames.map((tabsName, index) => (
               <Tab
                 key={index}
-                label={tabsName}
+                label={<span><ChatIcon/>{tabsName}</span>}
                 onMouseOver={() => test(index)}
                 onMouseLeave={() => mouseLeave(index)}
                 style={style2[sstyle[index]]}

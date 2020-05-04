@@ -1,13 +1,14 @@
 import React from 'react';
 import Test from '../components/Test';
 import Testtwo from '../components/Testtwo';
+import MainComponent from '../components/Maincomponent';
 
 
 export const RouterConfigs = [
     {
         path : "/",
         exact : true,
-        component : () => (<Test/>)
+        component : () => (<MainComponent/>)
     },
     {
         path : "/test",

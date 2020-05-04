@@ -16,7 +16,7 @@ const customTheme = createMuiTheme({
     },
     contentsMaxwidth : '1280px',
     //스페이싱 배열
-    spacing : [0,2,4,8] 
+    // spacing : [0,2,4,8] 
 });
 
 export default customTheme;
