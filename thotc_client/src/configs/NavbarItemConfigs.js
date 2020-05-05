@@ -2,13 +2,8 @@ export const NavbarItems = [
     {
         type : 'menuItem',
         TypoVariant : 'h6',
-        menuText : 'Example',
-        linkto : "/test"
+        menuText : 'HotClip',
+        linkto : "/hotclip"
     },
-    {
-        type : 'menuItem',
-        TypoVariant : 'h6',
-        menuText : 'Example2',
-        linkto : "/test2"
-    }
+    
 ];

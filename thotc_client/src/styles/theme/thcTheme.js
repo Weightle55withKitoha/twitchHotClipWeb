@@ -5,6 +5,7 @@ const customTheme = createMuiTheme({
     palette : {
         primary: {
             main : '#ffffff',
+            select : '#0d86ff',
         },
         secondary: {
             light: '#00ffff',

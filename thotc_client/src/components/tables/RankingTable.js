@@ -18,6 +18,8 @@ import PeopleIcon from '@material-ui/icons/People';
 import TimerIcon from '@material-ui/icons/Timer';
 import UpdateIcon from '@material-ui/icons/Update';
 
+import * as Actions from '../../store/actions';
+import {useDispatch,useSelector} from 'react-redux';
 
 
 function a11yProps(index) {
@@ -91,12 +93,11 @@ const RankingTable = () => {
     { Label: "마지막방송 시간", tabIcon: <UpdateIcon className={iconclasses.update} color="inherit" fontSize="small"/> },
   ];
 
-  const [rows, setRows] = useState(null);
+  const dispatch = useDispatch();
+  const rows = useSelector(state => state.rankingTable.responsedata);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/streams").then((response) => {
-      setRows(response.data);
-    });
+    dispatch(Actions.getRankingTableDataAPI());
   }, []);
 
   const test = (index) => {

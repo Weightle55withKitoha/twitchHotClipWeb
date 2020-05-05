@@ -1,6 +1,6 @@
 import React from 'react';
 import MainComponent from '../components/Maincomponent';
-
+import SearchBar from '../components/SearchBar';
 
 export const RouterConfigs = [
     {
