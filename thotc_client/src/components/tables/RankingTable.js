@@ -131,7 +131,7 @@ const RankingTable = () => {
             {tabsNames.map((tabsName, index) => (
               <Tab
                 key={index}
-                label={<span><ChatIcon/>{tabsName}</span>}
+                label={<div><ChatIcon/>{tabsName}</div>}
                 onMouseOver={() => test(index)}
                 onMouseLeave={() => mouseLeave(index)}
                 style={style2[sstyle[index]]}
