@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  root: { position: "absolute", width: "100%", height: "100%", backgroundColor:'#dae0e8' },
+  root: { position: "absolute", width: "100%", height: "auto", backgroundColor:'#dae0e8', overflowY:"visible" },
 }));
 
 const App = () => {
