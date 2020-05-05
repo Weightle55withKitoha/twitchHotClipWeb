@@ -5,6 +5,7 @@ import com.wwithk.thotc.dao.AccessTokenDao;
 import com.wwithk.thotc.dao.TableInfoDao;
 import com.wwithk.thotc.repository.AccessTokenRepository;
 import com.wwithk.thotc.repository.TableInfoRepository;
+import com.wwithk.thotc.service.RankingTableService;
 import com.wwithk.thotc.service.TwitchAccessTokenService;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,9 @@ public class helloController {
 
     @Autowired
     TwitchAccessTokenService twitchAccessTokenService;
+
+    @Autowired
+    RankingTableService rankingTableService;
 
     private final AccessTokenRepository accessTokenRepository;
 
