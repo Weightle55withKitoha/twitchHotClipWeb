@@ -5,12 +5,22 @@ import {
   TableBody,
   TableContainer,
   Table,
-  Typography,
+  Typography
 } from "@material-ui/core";
+import StreamerProfileCol from './StreamerProfileCol';
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme=>({
+  tablecell : {
+    width : '12.5%'
+  }
+}));
 
 function LowerTable(props) {
   const rowCells = props.rowCells;
   let table;
+
+  const classes = useStyles();
 
   if (rowCells != null) {
     table = (
@@ -22,13 +32,14 @@ function LowerTable(props) {
               index % 2 ? { background: "#e2e8f0" } : { background: "white" }
             }
           >
-            <TableCell>{index + 1}</TableCell>
-            <TableCell>{rowCell.streamerName}</TableCell>
-            <TableCell>{rowCell.viewerCount}</TableCell>
-            <TableCell>{rowCell.followerCount}</TableCell>
-            <TableCell>{rowCell.viewerAverage}</TableCell>
-            <TableCell>{rowCell.broadcastTime}</TableCell>
-            <TableCell>{rowCell.broadcastEndTime}</TableCell>
+            <TableCell className={classes.tablecell} style={{fontWeight:'bold',fontSize:'large'}} align="center">{index + 1}</TableCell>
+          <TableCell className={classes.tablecell} align="center"><StreamerProfileCol ImgUrl={rowCell.streamerImgUrl} StreamerName={rowCell.streamerName}/></TableCell>
+          <TableCell className={classes.tablecell} align="center"> </TableCell>
+            <TableCell className={classes.tablecell} style={{color:"#d69e2e",fontWeight:'bold'}} align="center">{rowCell.viewerCount}</TableCell>
+            <TableCell className={classes.tablecell} style={{color:"#805ad5",fontWeight:'bold'}} align="center">{rowCell.viewerAverage}</TableCell>
+            <TableCell className={classes.tablecell} style={{color:"#dd6b20",fontWeight:'bold'}} align="center">{rowCell.followerCount}</TableCell>
+            <TableCell className={classes.tablecell} style={{color:"#38a169",fontWeight:'bold'}} align="center">{rowCell.broadcastTime}</TableCell>
+            <TableCell className={classes.tablecell} style={{color:"#059bff",fontWeight:'bold'}} align="center"><div>{rowCell.broadcastEndDay}</div><div>{rowCell.broadcastEndTime}</div></TableCell>
           </TableRow>
         ))}
       </TableBody>
