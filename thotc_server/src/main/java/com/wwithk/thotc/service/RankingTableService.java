@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wwithk.thotc.dao.AccessTokenDao;
 import com.wwithk.thotc.dao.TableInfoDao;
+import com.wwithk.thotc.dto.response.DaysPair;
 import com.wwithk.thotc.dto.response.TableInfoResponseDto;
 import com.wwithk.thotc.dto.response.ViewerPair;
 import com.wwithk.thotc.dto.response.api.GetStreamsDto;
@@ -68,7 +69,7 @@ public class RankingTableService {
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
                 .path("/helix/streams")
-                .queryParam("first",10)
+                .queryParam("first",30)
                 .queryParam("language","ko")
                 .build();
 
@@ -195,9 +196,8 @@ public class RankingTableService {
                     streamsData.getData().get(i).getViewerCount());
 
             Integer currentViewerAverage=currentViewerTotal.getViewerTotal()/currentViewerTotal.getViewerNumber();
-            log.info(currentViewerAverage.toString() + " " +currentViewerTotal.getViewerTotal()
-            + " "+currentViewerTotal.getViewerNumber());
 
+            DaysPair daysPair=timeCalculatorService.getDateToString(streamsData.getData().get(i).getStartTime());
             TableInfoResponseDto tableInfoResponseDto=TableInfoResponseDto.builder()
                     .streamerName(curUserName)
                     .streamerImgUrl(userInfo.getProfileImgUrl())
@@ -205,7 +205,8 @@ public class RankingTableService {
                     .followerCount(userFollowsData.getTotal())
                     .viewerAverage(currentViewerAverage)
                     .broadcastTime(getTotalBroadCastTime(streamsData.getData().get(i).getUserId()))
-                    .broadcastEndTime(streamsData.getData().get(i).getStartTime())
+                    .broadcastEndDay(daysPair.getDay())
+                    .broadcastEndTime(daysPair.getTime())
                     .viewerTotal(currentViewerTotal.getViewerTotal())
                     .viewerNumber(currentViewerTotal.getViewerNumber())
                     .build();
@@ -224,7 +225,8 @@ public class RankingTableService {
                         userFollowsData.getTotal(),
                         currentViewerAverage,
                         getTotalBroadCastTime(streamsData.getData().get(i).getUserId()),
-                        streamsData.getData().get(i).getStartTime(),
+                        daysPair.getDay(),
+                        daysPair.getTime(),
                         currentViewerTotal.getViewerTotal(),
                         currentViewerTotal.getViewerNumber());
 
