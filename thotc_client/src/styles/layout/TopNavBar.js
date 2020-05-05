@@ -37,7 +37,7 @@ const TopNavBar = () => {
       <Toolbar className={classes.toolbar}>
         <Toolbar className={classes.contents}>
           <Typography variant="h5" className={classes.mainLogo}>
-            MainLogo
+            <Link to="/" className={classes.linkNone}> 트위치핫클립</Link>
           </Typography>
           {NavbarItems.map((item, index) => (
             <Link to={item.linkto} className={classes.linkNone} key={index}>

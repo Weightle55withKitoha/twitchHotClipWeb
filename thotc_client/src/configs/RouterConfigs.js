@@ -8,10 +8,5 @@ export const RouterConfigs = [
         exact : true,
         component : () => (<MainComponent/>)
     },
-    {
-        path : "/test",
-        exact : false,
-        component : () => <SearchBar/>
-    }
     
 ];
