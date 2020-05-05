@@ -2,6 +2,7 @@ package com.wwithk.thotc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.JsonParseException;
+import com.wwithk.thotc.dao.TableInfoDao;
 import com.wwithk.thotc.dto.response.TableInfoResponseDto;
 import com.wwithk.thotc.dto.response.api.GetStreamsDto;
 import com.wwithk.thotc.dto.response.api.GetUsersDto;
@@ -28,9 +29,7 @@ public class RankingTableController {
     private final TableInfoRepository tableInfoRepository;
 
     @GetMapping("/streams")
-    public String test() throws JsonProcessingException, ParseException, InterruptedException {
-      /*  List<TableInfoResponseDto> tableInfoResponseDtos=new ArrayList<TableInfoResponseDto>();
-        rankingTableService.rankingTableScheduler();*/
-        return "success";
+    public List<TableInfoDao> test() throws JsonProcessingException, ParseException, InterruptedException {
+        return tableInfoRepository.findAll();
     }
 }

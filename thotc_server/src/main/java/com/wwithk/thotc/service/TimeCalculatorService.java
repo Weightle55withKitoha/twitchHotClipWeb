@@ -1,5 +1,6 @@
 package com.wwithk.thotc.service;
 
+import com.wwithk.thotc.dto.response.DaysPair;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -40,6 +41,13 @@ public class TimeCalculatorService {
         Integer seconds=((value%3600)%60);
 
         return "주 "+Integer.toString(hour)+"시간 "+Integer.toString(minutes)+"분 "+Integer.toString(seconds)+"초";
+    }
+
+    public DaysPair getDateToString(String date){
+       return DaysPair.builder()
+               .day(date.substring(0,10))
+               .time(date.substring(11,date.length()-1))
+               .build();
     }
 
 

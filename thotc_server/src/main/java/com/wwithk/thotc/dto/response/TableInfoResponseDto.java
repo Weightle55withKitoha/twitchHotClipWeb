@@ -12,12 +12,14 @@ public class TableInfoResponseDto {
     private int followerCount;
     private int viewerAverage;
     private String broadcastTime;
+    private String broadcastEndDay;
     private String broadcastEndTime;
     private int viewerTotal;
     private int viewerNumber;
 
     @Builder
-    public TableInfoResponseDto(String streamerName,String streamerImgUrl,int viewerCount,int followerCount,int viewerAverage,String broadcastTime,String broadcastEndTime
+    public TableInfoResponseDto(String streamerName,String streamerImgUrl,int viewerCount,int followerCount,int viewerAverage,String broadcastTime,
+                                String broadcastEndDay,String broadcastEndTime
     ,int viewerTotal,int viewerNumber){
         this.streamerName=streamerName;
         this.streamerImgUrl=streamerImgUrl;
@@ -25,6 +27,7 @@ public class TableInfoResponseDto {
         this.followerCount=followerCount;
         this.viewerAverage=viewerAverage;
         this.broadcastTime=broadcastTime;
+        this.broadcastEndDay=broadcastEndDay;
         this.broadcastEndTime=broadcastEndTime;
         this.viewerTotal=viewerTotal;
         this.viewerNumber=viewerNumber;
@@ -38,6 +41,7 @@ public class TableInfoResponseDto {
                 .followerCount(followerCount)
                 .viewerAverage(viewerAverage)
                 .broadcastTime(broadcastTime)
+                .broadcastEndDay(broadcastEndDay)
                 .broadcastEndTime(broadcastEndTime)
                 .viewerTotal(viewerTotal)
                 .viewerNumber(viewerNumber)
