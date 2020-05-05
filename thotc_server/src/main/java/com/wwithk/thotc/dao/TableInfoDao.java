@@ -24,11 +24,13 @@ public class TableInfoDao {
     private int followerCount;
     private int viewerAverage;
     private String broadcastTime;
-    private int broadcastEndTime;
+    private String broadcastEndTime;
+    private int viewerTotal;
+    private int viewerNumber;
 
     @Builder
     public TableInfoDao(String streamerName,String streamerImgUrl,int viewerCount
-            ,int followerCount,int viewerAverage,String broadcastTime,int broadcastEndTime){
+            ,int followerCount,int viewerAverage,String broadcastTime,String broadcastEndTime,int viewerTotal,int viewerNumber){
         this.streamerName=streamerName;
         this.streamerImgUrl=streamerImgUrl;
         this.viewerCount=viewerCount;
@@ -36,6 +38,21 @@ public class TableInfoDao {
         this.viewerAverage=viewerAverage;
         this.broadcastTime=broadcastTime;
         this.broadcastEndTime=broadcastEndTime;
+        this.viewerTotal=viewerTotal;
+        this.viewerNumber=viewerNumber;
+    }
+
+    public void update(String streamerName,String streamerImgUrl,int viewerCount
+            ,int followerCount,int viewerAverage,String broadcastTime,String broadcastEndTime,int viewerTotal,int viewerNumber){
+        this.streamerName=streamerName;
+        this.streamerImgUrl=streamerImgUrl;
+        this.viewerCount=viewerCount;
+        this.followerCount=followerCount;
+        this.viewerAverage=viewerAverage;
+        this.broadcastTime=broadcastTime;
+        this.broadcastEndTime=broadcastEndTime;
+        this.viewerTotal=viewerTotal;
+        this.viewerNumber=viewerNumber;
     }
 
 }
