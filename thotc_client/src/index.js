@@ -7,12 +7,23 @@ import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider } from "@material-ui/core/styles";
 import customTheme from "./styles/theme/thcTheme";
 
+import { createStore,applyMiddleware,compose } from "redux";
+import { Provider } from "react-redux";
+import rootReducer from "./store/reducers";
+
+import thunk from 'redux-thunk';
+
+const composeEnhancer = window.__REDUX__DEVTOOLS_EXTENSION_COMPOSE || compose;
+const store = createStore(rootReducer,composeEnhancer(applyMiddleware(thunk)));
+
 ReactDOM.render(
-    <React.StrictMode>
-      <ThemeProvider theme={customTheme}>
+  <React.StrictMode>
+    <ThemeProvider theme={customTheme}>
+      <Provider store={store}>
         <App />
-      </ThemeProvider>
-    </React.StrictMode>,
+      </Provider>
+    </ThemeProvider>
+  </React.StrictMode>,
   document.getElementById("root")
 );
 
