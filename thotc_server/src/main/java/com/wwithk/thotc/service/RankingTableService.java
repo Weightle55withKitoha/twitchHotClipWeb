@@ -64,12 +64,12 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
                 .path("/helix/streams")
-                .queryParam("first",30)
+                .queryParam("first",100)
                 .queryParam("language","ko")
                 .build();
 
@@ -87,7 +87,7 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -109,7 +109,7 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -147,7 +147,7 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
