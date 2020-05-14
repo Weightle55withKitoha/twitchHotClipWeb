@@ -69,7 +69,7 @@ public class RankingTableService {
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
                 .path("/helix/streams")
-                .queryParam("first",30)
+                .queryParam("first",100)
                 .queryParam("language","ko")
                 .build();
 
@@ -161,6 +161,7 @@ public class RankingTableService {
 
         ObjectMapper objectMapper=new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
 
         GetViedeosDto.ViedeosData viedeosDatas=objectMapper.readValue(responseEntity.getBody(),GetViedeosDto.ViedeosData.class);
 

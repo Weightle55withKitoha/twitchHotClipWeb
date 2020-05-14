@@ -1,5 +1,6 @@
 package com.wwithk.thotc.dao;
 
+import com.wwithk.thotc.dto.response.TableInfoResponseDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,6 +60,21 @@ public class TableInfoDao {
         this.viewerTotal=viewerTotal;
         this.viewerNumber=viewerNumber;
         this.broadcasterId=broadcasterId;
+    }
+
+    public TableInfoResponseDto toDto(){
+        return TableInfoResponseDto.builder()
+                .streamerName(streamerName)
+                .streamerImgUrl(streamerImgUrl)
+                .viewerCount(viewerCount)
+                .followerCount(followerCount)
+                .viewerAverage(viewerAverage)
+                .broadcastTime(broadcastTime)
+                .broadcastEndDay(broadcastEndDay)
+                .broadcastEndTime(broadcastEndTime)
+                .viewerTotal(viewerTotal)
+                .viewerNumber(viewerNumber)
+                .build();
     }
 
 }
