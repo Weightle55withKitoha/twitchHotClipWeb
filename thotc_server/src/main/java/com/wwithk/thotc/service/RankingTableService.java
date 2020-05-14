@@ -162,6 +162,7 @@ public class RankingTableService {
         ObjectMapper objectMapper=new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+
         GetViedeosDto.ViedeosData viedeosDatas=objectMapper.readValue(responseEntity.getBody(),GetViedeosDto.ViedeosData.class);
 
         Integer totalTime=0;
