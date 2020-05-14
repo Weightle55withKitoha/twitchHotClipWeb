@@ -54,7 +54,7 @@ function IconStyle() {
 
 const createGrid = (tabLabel, tabIcon) => {
   return (
-    <Grid container direction="row" justify="center" >
+    <Grid container direction="row" justify="center">
       <Grid item>{tabIcon}</Grid>
       <Grid item style={{ marginLeft: "10px", paddingBottom: "6px" }}>
         {tabLabel}
@@ -139,34 +139,33 @@ const RankingTable = () => {
 
   return (
     <Paper style={{ marginTop: 50 }} elevation={7}>
-        <TableToolbar />    
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                TabIndicatorProps={{
-                  style: {
-                    background: bottomColors[value - 2],
-                    color: "white",
-                  },
-                }}
-                variant="fullWidth"
-              >
-                <Tab style={{ width: "5px" }} label="순위" disabled />
-              
-                  <Tab label="스트리머" disabled />
-                  {tabsNames.map((tabsName, index) => (
-                    <Tab
-                      key={index}
-                      label={createGrid(tabsName.Label, tabsName.tabIcon)}
-                      onMouseOver={() => mouseOver(index)}
-                      onMouseLeave={() => mouseLeave(index)}
-                      style={style2[sstyle[index]]}
-                      // {...a11yProps(index)}
-                    />
-                  ))}             
-              </Tabs>    
-          <TableLower rowCells={rows}></TableLower>
-        
+      <TableToolbar />
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        TabIndicatorProps={{
+          style: {
+            background: bottomColors[value - 2],
+            color: "white",
+          },
+        }}
+        variant="fullWidth"
+      >
+        <Tab style={{ width: "5px" }} label="순위" disabled />
+
+        <Tab label="스트리머" disabled />
+        {tabsNames.map((tabsName, index) => (
+          <Tab
+            key={index}
+            label={createGrid(tabsName.Label, tabsName.tabIcon)}
+            onMouseOver={() => mouseOver(index)}
+            onMouseLeave={() => mouseLeave(index)}
+            style={style2[sstyle[index]]}
+            // {...a11yProps(index)}
+          />
+        ))}
+      </Tabs>
+      <TableLower rowCells={rows}></TableLower>
     </Paper>
   );
 };

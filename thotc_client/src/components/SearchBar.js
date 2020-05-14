@@ -11,6 +11,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import clsx from "clsx";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,21 +26,27 @@ const useStyles = makeStyles((theme) => ({
     width: "75ch",
     minWidth: "50ch",
   },
-  span : {
-      color : '#a2a8b3'
-  }
+  span: {
+    color: "#a2a8b3",
+  },
 }));
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const dispatch = useDispatch();
   const searchText = useSelector((state) => state.searchbar.searchText);
 
-  const handleChange = (e) => {return dispatch(Actions.setSearchBarText(e))};
-
+  const handleChange = (e) => {
+    return dispatch(Actions.setSearchBarText(e));
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      console.log(searchText);
+      props.history.push("/profile/" + searchText);
+    }
+  };
   const classes = useStyles();
   return (
     <div>
-      
       <Grid container justify="center">
         <Grid item>
           <Paper className={classes.root} elevation={10}>
@@ -51,6 +58,7 @@ const SearchBar = () => {
                 id="outlined-adornment-weight"
                 value={searchText}
                 onChange={handleChange}
+                onKeyPress={(e) => handleKeyDown(e)}
                 startAdornment={
                   <InputAdornment position="start">
                     <SearchIcon />
@@ -62,14 +70,16 @@ const SearchBar = () => {
                 }}
                 labelWidth={0}
                 placeholder={"스트리머 검색"}
-                fullWidth = {true}
+                fullWidth={true}
               />
             </FormControl>
           </Paper>
         </Grid>
         <Grid container justify="center">
           <Grid item className={classes.explain}>
-           <span className={classes.span}>시청자가 25명 이상인 스트리머가 자동으로 등록됩니다.</span>
+            <span className={classes.span}>
+              시청자가 25명 이상인 스트리머가 자동으로 등록됩니다.
+            </span>
           </Grid>
         </Grid>
       </Grid>
@@ -77,4 +87,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default withRouter(SearchBar);
