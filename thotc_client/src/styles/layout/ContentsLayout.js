@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     root : {
         display : 'flex',
         justifyContent : 'center',
-        overflow : 'auto'
+        overflow : 'auto',
     },
     main : {
         maxWidth : theme.contentsMaxwidth,

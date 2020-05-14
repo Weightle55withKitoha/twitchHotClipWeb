@@ -210,6 +210,7 @@ public class RankingTableService {
                     .broadcastEndTime(daysPair.getTime())
                     .viewerTotal(currentViewerTotal.getViewerTotal())
                     .viewerNumber(currentViewerTotal.getViewerNumber())
+                    .broadcasterId(userInfo.getUserId())
                     .build();
 
             log.info(tableInfoResponseDto.getStreamerName());
@@ -229,7 +230,8 @@ public class RankingTableService {
                         daysPair.getDay(),
                         daysPair.getTime(),
                         currentViewerTotal.getViewerTotal(),
-                        currentViewerTotal.getViewerNumber());
+                        currentViewerTotal.getViewerNumber(),
+                        userInfo.getUserId());
 
                 tableInfoRepository.save(tableInfoDao.get());
             }

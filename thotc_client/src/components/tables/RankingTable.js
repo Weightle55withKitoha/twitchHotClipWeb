@@ -5,11 +5,6 @@ import {
   Tabs,
   Tab,
   Grid,
-  TableContainer,
-  Table,
-  TableHead,
-  TableCell,
-  TableRow,
 } from "@material-ui/core";
 import TableLower from "./LowerTable";
 import TableToolbar from "./TableToolbar";
