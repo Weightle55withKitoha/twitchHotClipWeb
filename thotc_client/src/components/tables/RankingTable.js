@@ -5,11 +5,6 @@ import {
   Tabs,
   Tab,
   Grid,
-  TableContainer,
-  Table,
-  TableHead,
-  TableCell,
-  TableRow,
 } from "@material-ui/core";
 import TableLower from "./LowerTable";
 import TableToolbar from "./TableToolbar";
@@ -143,12 +138,8 @@ const RankingTable = () => {
   };
 
   return (
-    <Paper style={{ marginTop: 50 }} maxWidth="lg" elevation={7}>
-      <TableContainer>
-        <TableToolbar />
-        <Table>
-          <TableHead>
-            <TableRow>
+    <Paper style={{ marginTop: 50 }} elevation={7}>
+        <TableToolbar />    
               <Tabs
                 value={value}
                 onChange={handleChange}
@@ -172,14 +163,10 @@ const RankingTable = () => {
                       style={style2[sstyle[index]]}
                       // {...a11yProps(index)}
                     />
-                  ))}
-                
-              </Tabs>
-            </TableRow>
-          </TableHead>
+                  ))}             
+              </Tabs>    
           <TableLower rowCells={rows}></TableLower>
-        </Table>
-      </TableContainer>
+        
     </Paper>
   );
 };
