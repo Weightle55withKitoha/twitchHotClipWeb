@@ -64,7 +64,7 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -87,7 +87,7 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -109,7 +109,7 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -147,7 +147,7 @@ public class RankingTableService {
         HttpHeaders httpHeaders=new HttpHeaders();
         httpHeaders.add("Client-ID",cliendId);
         AccessTokenDao accessTokenDao=twitchAccessTokenService.getAccessToken();
-        httpHeaders.add("Authorization: Bearer",accessTokenDao.getAccessToken());
+        httpHeaders.add("Authorization","Bearer "+accessTokenDao.getAccessToken());
         HttpEntity<String> request=new HttpEntity<String>(httpHeaders);
         UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
                 .host(twitchHost)
@@ -209,6 +209,7 @@ public class RankingTableService {
                     .broadcastEndTime(daysPair.getTime())
                     .viewerTotal(currentViewerTotal.getViewerTotal())
                     .viewerNumber(currentViewerTotal.getViewerNumber())
+                    .broadcasterId(userInfo.getUserId())
                     .build();
 
             log.info(tableInfoResponseDto.getStreamerName());
@@ -228,7 +229,8 @@ public class RankingTableService {
                         daysPair.getDay(),
                         daysPair.getTime(),
                         currentViewerTotal.getViewerTotal(),
-                        currentViewerTotal.getViewerNumber());
+                        currentViewerTotal.getViewerNumber(),
+                        userInfo.getUserId());
 
                 tableInfoRepository.save(tableInfoDao.get());
             }
