@@ -14,6 +14,7 @@ import {
 import * as Actions from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
+import ClipComponent from './ClipComponent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,13 +43,17 @@ const Profile = ({ match }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.profile.responsedata);
   const name = match.params.username;
+  const clipDatas = useSelector(state=>state.profile.clipdatas);
+
   const classes = useStyles();
 
   useEffect(() => {
     console.log(match);
     console.log(name);
     dispatch(Actions.getProfileData(name));
+    dispatch(Actions.getClipDatas(name));
     console.log(userInfo);
+    // eslint-disable-next-line
   }, []);
 
   let table;
@@ -197,6 +202,7 @@ const Profile = ({ match }) => {
   return (
     <Container maxWidth="lg" style={{ background: "#e2e8f0" }}>
       {table}
+      <ClipComponent clipDatas={clipDatas} user={userInfo} name={name}/>
     </Container>
   );
 };
