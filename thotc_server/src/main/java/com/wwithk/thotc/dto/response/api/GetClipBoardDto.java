@@ -22,6 +22,9 @@ public class GetClipBoardDto {
         @JsonProperty("broadcaster_name")
         private String broadcasterName;
 
+        @JsonProperty("created_at")
+        private String createdAt;
+
         @JsonProperty("created_id")
         private String createdId;
 
