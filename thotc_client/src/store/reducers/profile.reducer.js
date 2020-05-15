@@ -2,6 +2,7 @@ import * as Actions from "../actions";
 
 const initialState = {
   responsedata: null,
+  clipdatas : null ,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         responsedata: action.data,
       };
+    }
+    case Actions.FETCH_CLIP_DATAS : {
+      return {
+        ...state,
+        clipdatas : action.clipdatas,
+      }
     }
     default: {
       return state;
