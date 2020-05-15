@@ -26,6 +26,7 @@ function LowerTable(props) {
     table = (
       <TableBody>
         {rowCells.map((rowCell, index) => (
+          // <Link to={`/profile/${rowCell.streamerName}`} >
           <TableRow
             key={rowCell.streamerName}
             style={
@@ -41,6 +42,7 @@ function LowerTable(props) {
             <TableCell className={classes.tablecell} style={{color:"#38a169",fontWeight:'bold'}} align="center">{rowCell.broadcastTime}</TableCell>
             <TableCell className={classes.tablecell} style={{color:"#059bff",fontWeight:'bold'}} align="center"><div>{rowCell.broadcastEndDay}</div><div>{rowCell.broadcastEndTime}</div></TableCell>
           </TableRow>
+          // </Link>
         ))}
       </TableBody>
     );

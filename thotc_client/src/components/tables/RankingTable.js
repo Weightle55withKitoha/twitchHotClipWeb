@@ -19,12 +19,12 @@ import UpdateIcon from "@material-ui/icons/Update";
 import * as Actions from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`,
-  };
-}
+// function a11yProps(index) {
+//   return {
+//     id: `full-width-tab-${index}`,
+//     "aria-controls": `full-width-tabpanel-${index}`,
+//   };
+// }
 
 function IconStyle() {
   return {
@@ -119,6 +119,7 @@ const RankingTable = () => {
 
   useEffect(() => {
     dispatch(Actions.getRankingTableDataAPI());
+    // eslint-disable-next-line
   }, []);
 
   const mouseOver = (index) => {
