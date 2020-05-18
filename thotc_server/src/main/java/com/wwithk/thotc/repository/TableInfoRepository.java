@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface TableInfoRepository extends JpaRepository<TableInfoDao,Long> {
     Optional<TableInfoDao> findBystreamerName(String name);
-    @Query("SELECT * FROM TableInfoDao t ORDER BY t.viewerCount DESC")
+    @Query("SELECT t FROM TableInfoDao t ORDER BY t.viewerCount DESC")
     List<TableInfoDao> findAllDesc();
 }

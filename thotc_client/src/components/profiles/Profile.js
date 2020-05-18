@@ -14,7 +14,8 @@ import {
 import * as Actions from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
-import ClipComponent from './ClipComponent';
+import ClipComponent from "./ClipComponent";
+import ProfileErrorPage from "./ProfileErrorPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,20 +44,18 @@ const Profile = ({ match }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.profile.responsedata);
   const name = match.params.username;
-  const clipDatas = useSelector(state=>state.profile.clipdatas);
+  const clipDatas = useSelector((state) => state.profile.clipdatas);
 
   const classes = useStyles();
 
   useEffect(() => {
-    console.log(match);
-    console.log(name);
     dispatch(Actions.getProfileData(name));
     dispatch(Actions.getClipDatas(name));
-    console.log(userInfo);
     // eslint-disable-next-line
   }, []);
 
   let table;
+
   if (userInfo != null) {
     table = (
       <Grid container>
@@ -146,63 +145,12 @@ const Profile = ({ match }) => {
       </Grid>
     );
   } else {
-    table = (
-      <Grid container>
-        <Grid item>
-          <List className={classes.root} disablePadding={false}>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#e53e3e",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="평청자"></ListItemText>
-            </ListItem>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#d69e2e",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="팔로워"></ListItemText>
-            </ListItem>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#805ad5",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="방송량"></ListItemText>
-            </ListItem>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#dd6b20",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="방송시간대"></ListItemText>
-            </ListItem>
-          </List>
-        </Grid>
-      </Grid>
-    );
+    return <ProfileErrorPage></ProfileErrorPage>;
   }
   return (
     <Container maxWidth="lg" style={{ background: "#e2e8f0" }}>
       {table}
-      <ClipComponent clipDatas={clipDatas} user={userInfo} name={name}/>
+      <ClipComponent clipDatas={clipDatas} user={userInfo} name={name} />
     </Container>
   );
 };

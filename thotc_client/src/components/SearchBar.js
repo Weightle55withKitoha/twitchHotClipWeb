@@ -40,7 +40,6 @@ const SearchBar = (props) => {
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log(searchText);
       props.history.push("/profile/" + searchText);
     }
   };
