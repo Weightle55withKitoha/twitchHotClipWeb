@@ -15,7 +15,7 @@ export const fetchProfileData = (data) => {
 export const getProfileData = (name) => {
   return (dispatch) => {
     return axios
-      .get(`http://localhost:8080/api/profile/${name}`)
+      .get(`/api/profile/${name}`)
       .then((response) => {
         console.log(response.data);
         dispatch(fetchProfileData(response.data));
@@ -36,7 +36,7 @@ export const fetchClipDatas = (clipdatas) => {
 export const getClipDatas = (streamerName) => {
   return (dispatch)=> {
     return axios
-    .get(`http://localhost:8080/api/getclips/${streamerName}`)
+    .get(`/api/getclips/${streamerName}`)
     .then((response)=>{
       console.log(response.data);
       dispatch(fetchClipDatas(response.data.data));
