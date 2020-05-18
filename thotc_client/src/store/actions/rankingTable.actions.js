@@ -13,7 +13,7 @@ export const fetchRankingTableData = (data) => {
 export const getRankingTableDataAPI = () => {
   return (dispatch) => {
     return axios
-      .get("http://localhost:8080/streams")
+      .get(`/api/streams`)
       .then((response) => {
         dispatch(fetchRankingTableData(response.data));
       })
