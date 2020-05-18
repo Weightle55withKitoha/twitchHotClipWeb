@@ -36,7 +36,9 @@ function LowerTable(props) {
 
   if (rowCells != null) {
     table = (
-      <div>
+      <>
+      <TableContainer>
+      <Table aria-label="ranking table">
         <TableBody>
           {rowCells
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -106,6 +108,8 @@ function LowerTable(props) {
               // </Link>
             ))}
         </TableBody>
+        </Table>
+        </TableContainer>
         <TablePagination
           className="overflow-hidden"
           component="div"
@@ -122,10 +126,12 @@ function LowerTable(props) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
           labelRowsPerPage="표시 데이터 수"
         />
-      </div>
+      </>
     );
   } else {
     table = (
+      <TableContainer>
+      <Table aria-label="ranking table">
       <TableBody>
         <TableRow>
           <TableCell>
@@ -133,12 +139,12 @@ function LowerTable(props) {
           </TableCell>
         </TableRow>
       </TableBody>
+      </Table>
+      </TableContainer>
     );
   }
   return (
-    <TableContainer>
-      <Table aria-label="ranking table">{table}</Table>
-    </TableContainer>
+      table 
   );
 }
 
