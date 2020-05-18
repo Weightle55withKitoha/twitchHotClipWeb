@@ -17,10 +17,10 @@ export const getProfileData = (name) => {
     return axios
       .get(`/api/profile/${name}`)
       .then((response) => {
-        console.log(response.data);
         dispatch(fetchProfileData(response.data));
       })
       .catch((error) => {
+        dispatch(fetchProfileData(null));
         throw error;
       });
   };
@@ -30,19 +30,18 @@ export const fetchClipDatas = (clipdatas) => {
   return {
     type: FETCH_CLIP_DATAS,
     clipdatas,
-  }
-}
+  };
+};
 
 export const getClipDatas = (streamerName) => {
-  return (dispatch)=> {
+  return (dispatch) => {
     return axios
-    .get(`/api/getclips/${streamerName}`)
-    .then((response)=>{
-      console.log(response.data);
-      dispatch(fetchClipDatas(response.data.data));
-    })
-    .catch((error)=>{
-      throw error;
-    });
+      .get(`/api/getclips/${streamerName}`)
+      .then((response) => {
+        dispatch(fetchClipDatas(response.data.data));
+      })
+      .catch((error) => {
+        throw error;
+      });
   };
 };
