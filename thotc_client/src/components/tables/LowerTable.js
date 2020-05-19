@@ -36,7 +36,13 @@ function LowerTable(props) {
 
   if (rowCells != null) {
     table = (
+<<<<<<< HEAD
       <div>
+=======
+      <>
+      <TableContainer>
+      <Table aria-label="ranking table">
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
         <TableBody>
           {rowCells
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -106,6 +112,11 @@ function LowerTable(props) {
               // </Link>
             ))}
         </TableBody>
+<<<<<<< HEAD
+=======
+        </Table>
+        </TableContainer>
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
         <TablePagination
           className="overflow-hidden"
           component="div"
@@ -122,10 +133,19 @@ function LowerTable(props) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
           labelRowsPerPage="표시 데이터 수"
         />
+<<<<<<< HEAD
       </div>
     );
   } else {
     table = (
+=======
+      </>
+    );
+  } else {
+    table = (
+      <TableContainer>
+      <Table aria-label="ranking table">
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
       <TableBody>
         <TableRow>
           <TableCell>
@@ -133,12 +153,21 @@ function LowerTable(props) {
           </TableCell>
         </TableRow>
       </TableBody>
+<<<<<<< HEAD
     );
   }
   return (
     <TableContainer>
       <Table aria-label="ranking table">{table}</Table>
     </TableContainer>
+=======
+      </Table>
+      </TableContainer>
+    );
+  }
+  return (
+      table 
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
   );
 }
 
