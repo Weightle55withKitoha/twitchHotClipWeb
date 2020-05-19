@@ -14,7 +14,12 @@ import {
 import * as Actions from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
+<<<<<<< HEAD
 import ClipComponent from './ClipComponent';
+=======
+import ClipComponent from "./ClipComponent";
+import ProfileErrorPage from "./ProfileErrorPage";
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,20 +48,33 @@ const Profile = ({ match }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.profile.responsedata);
   const name = match.params.username;
+<<<<<<< HEAD
   const clipDatas = useSelector(state=>state.profile.clipdatas);
+=======
+  const clipDatas = useSelector((state) => state.profile.clipdatas);
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
 
   const classes = useStyles();
 
   useEffect(() => {
+<<<<<<< HEAD
     console.log(match);
     console.log(name);
     dispatch(Actions.getProfileData(name));
     dispatch(Actions.getClipDatas(name));
     console.log(userInfo);
+=======
+    dispatch(Actions.getProfileData(name));
+    dispatch(Actions.getClipDatas(name));
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
     // eslint-disable-next-line
   }, []);
 
   let table;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
   if (userInfo != null) {
     table = (
       <Grid container>
@@ -146,6 +164,7 @@ const Profile = ({ match }) => {
       </Grid>
     );
   } else {
+<<<<<<< HEAD
     table = (
       <Grid container>
         <Grid item>
@@ -198,11 +217,18 @@ const Profile = ({ match }) => {
         </Grid>
       </Grid>
     );
+=======
+    return <ProfileErrorPage></ProfileErrorPage>;
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
   }
   return (
     <Container maxWidth="lg" style={{ background: "#e2e8f0" }}>
       {table}
+<<<<<<< HEAD
       <ClipComponent clipDatas={clipDatas} user={userInfo} name={name}/>
+=======
+      <ClipComponent clipDatas={clipDatas} user={userInfo} name={name} />
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
     </Container>
   );
 };
