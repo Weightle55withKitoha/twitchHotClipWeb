@@ -12,7 +12,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
+=======
 import org.springframework.web.bind.annotation.RequestMapping;
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
@@ -22,7 +25,10 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+<<<<<<< HEAD
+=======
 @RequestMapping("/api")
+>>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
 public class RankingTableController {
 
     @Autowired
