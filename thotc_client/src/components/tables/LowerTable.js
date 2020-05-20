@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   TableRow,
   TableCell,
@@ -36,87 +36,80 @@ function LowerTable(props) {
 
   if (rowCells != null) {
     table = (
-<<<<<<< HEAD
-      <div>
-=======
       <>
-      <TableContainer>
-      <Table aria-label="ranking table">
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
-        <TableBody>
-          {rowCells
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((rowCell, index) => (
-              // <Link to={`/profile/${rowCell.streamerName}`} >
-              <TableRow
-                key={rowCell.streamerName}
-                style={
-                  index % 2
-                    ? { background: "#e2e8f0" }
-                    : { background: "white" }
-                }
-              >
-                <TableCell
-                  className={classes.tablecell}
-                  style={{ fontWeight: "bold", fontSize: "large" }}
-                  align="center"
-                >
-                  {index + 1}
-                </TableCell>
-                <TableCell className={classes.tablecell} align="center">
-                  <StreamerProfileCol
-                    ImgUrl={rowCell.streamerImgUrl}
-                    StreamerName={rowCell.streamerName}
-                  />
-                </TableCell>
-                <TableCell className={classes.tablecell} align="center">
-                  {" "}
-                </TableCell>
-                <TableCell
-                  className={classes.tablecell}
-                  style={{ color: "#d69e2e", fontWeight: "bold" }}
-                  align="center"
-                >
-                  {rowCell.viewerCount}
-                </TableCell>
-                <TableCell
-                  className={classes.tablecell}
-                  style={{ color: "#805ad5", fontWeight: "bold" }}
-                  align="center"
-                >
-                  {rowCell.viewerAverage}
-                </TableCell>
-                <TableCell
-                  className={classes.tablecell}
-                  style={{ color: "#dd6b20", fontWeight: "bold" }}
-                  align="center"
-                >
-                  {rowCell.followerCount}
-                </TableCell>
-                <TableCell
-                  className={classes.tablecell}
-                  style={{ color: "#38a169", fontWeight: "bold" }}
-                  align="center"
-                >
-                  {rowCell.broadcastTime}
-                </TableCell>
-                <TableCell
-                  className={classes.tablecell}
-                  style={{ color: "#059bff", fontWeight: "bold" }}
-                  align="center"
-                >
-                  <div>{rowCell.broadcastEndDay}</div>
-                  <div>{rowCell.broadcastEndTime}</div>
-                </TableCell>
-              </TableRow>
-              // </Link>
-            ))}
-        </TableBody>
-<<<<<<< HEAD
-=======
-        </Table>
+        <TableContainer>
+          <Table aria-label="ranking table">
+            <TableBody>
+              {rowCells
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((rowCell, index) => (
+                  // <Link to={`/profile/${rowCell.streamerName}`} >
+                  <TableRow
+                    key={rowCell.streamerName}
+                    style={
+                      index % 2
+                        ? { background: "#e2e8f0" }
+                        : { background: "white" }
+                    }
+                  >
+                    <TableCell
+                      className={classes.tablecell}
+                      style={{ fontWeight: "bold", fontSize: "large" }}
+                      align="center"
+                    >
+                      {index + 1}
+                    </TableCell>
+                    <TableCell className={classes.tablecell} align="center">
+                      <StreamerProfileCol
+                        ImgUrl={rowCell.streamerImgUrl}
+                        StreamerName={rowCell.streamerName}
+                      />
+                    </TableCell>
+                    <TableCell className={classes.tablecell} align="center">
+                      {" "}
+                    </TableCell>
+                    <TableCell
+                      className={classes.tablecell}
+                      style={{ color: "#d69e2e", fontWeight: "bold" }}
+                      align="center"
+                    >
+                      {rowCell.viewerCount}
+                    </TableCell>
+                    <TableCell
+                      className={classes.tablecell}
+                      style={{ color: "#805ad5", fontWeight: "bold" }}
+                      align="center"
+                    >
+                      {rowCell.viewerAverage}
+                    </TableCell>
+                    <TableCell
+                      className={classes.tablecell}
+                      style={{ color: "#dd6b20", fontWeight: "bold" }}
+                      align="center"
+                    >
+                      {rowCell.followerCount}
+                    </TableCell>
+                    <TableCell
+                      className={classes.tablecell}
+                      style={{ color: "#38a169", fontWeight: "bold" }}
+                      align="center"
+                    >
+                      {rowCell.broadcastTime}
+                    </TableCell>
+                    <TableCell
+                      className={classes.tablecell}
+                      style={{ color: "#059bff", fontWeight: "bold" }}
+                      align="center"
+                    >
+                      <div>{rowCell.broadcastEndDay}</div>
+                      <div>{rowCell.broadcastEndTime}</div>
+                    </TableCell>
+                  </TableRow>
+                  // </Link>
+                ))}
+            </TableBody>
+          </Table>
         </TableContainer>
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
         <TablePagination
           className="overflow-hidden"
           component="div"
@@ -133,42 +126,24 @@ function LowerTable(props) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
           labelRowsPerPage="표시 데이터 수"
         />
-<<<<<<< HEAD
-      </div>
-    );
-  } else {
-    table = (
-=======
       </>
     );
   } else {
     table = (
       <TableContainer>
-      <Table aria-label="ranking table">
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
-      <TableBody>
-        <TableRow>
-          <TableCell>
-            <Typography>로그인이 필요합니다.</Typography>
-          </TableCell>
-        </TableRow>
-      </TableBody>
-<<<<<<< HEAD
-    );
-  }
-  return (
-    <TableContainer>
-      <Table aria-label="ranking table">{table}</Table>
-    </TableContainer>
-=======
-      </Table>
+        <Table aria-label="ranking table">
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <Typography>로그인이 필요합니다.</Typography>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </TableContainer>
     );
   }
-  return (
-      table 
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
-  );
+  return table;
 }
 
 export default LowerTable;

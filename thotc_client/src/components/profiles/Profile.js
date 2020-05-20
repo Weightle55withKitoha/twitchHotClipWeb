@@ -14,12 +14,8 @@ import {
 import * as Actions from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
-<<<<<<< HEAD
-import ClipComponent from './ClipComponent';
-=======
 import ClipComponent from "./ClipComponent";
 import ProfileErrorPage from "./ProfileErrorPage";
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,33 +44,18 @@ const Profile = ({ match }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.profile.responsedata);
   const name = match.params.username;
-<<<<<<< HEAD
-  const clipDatas = useSelector(state=>state.profile.clipdatas);
-=======
   const clipDatas = useSelector((state) => state.profile.clipdatas);
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
 
   const classes = useStyles();
 
   useEffect(() => {
-<<<<<<< HEAD
-    console.log(match);
-    console.log(name);
     dispatch(Actions.getProfileData(name));
     dispatch(Actions.getClipDatas(name));
-    console.log(userInfo);
-=======
-    dispatch(Actions.getProfileData(name));
-    dispatch(Actions.getClipDatas(name));
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
     // eslint-disable-next-line
   }, []);
 
   let table;
-<<<<<<< HEAD
-=======
 
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
   if (userInfo != null) {
     table = (
       <Grid container>
@@ -164,71 +145,12 @@ const Profile = ({ match }) => {
       </Grid>
     );
   } else {
-<<<<<<< HEAD
-    table = (
-      <Grid container>
-        <Grid item>
-          <List className={classes.root} disablePadding={false}>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#e53e3e",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="평청자"></ListItemText>
-            </ListItem>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#d69e2e",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="팔로워"></ListItemText>
-            </ListItem>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#805ad5",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="방송량"></ListItemText>
-            </ListItem>
-            <ListItem classes={{ root: classes.item }}>
-              <Box
-                style={{
-                  backgroundColor: "#dd6b20",
-                  width: "0.25rem",
-                  height: "1.5rem",
-                  marginRight: "0.5rem",
-                }}
-              ></Box>
-              <ListItemText primary="방송시간대"></ListItemText>
-            </ListItem>
-          </List>
-        </Grid>
-      </Grid>
-    );
-=======
     return <ProfileErrorPage></ProfileErrorPage>;
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
   }
   return (
     <Container maxWidth="lg" style={{ background: "#e2e8f0" }}>
       {table}
-<<<<<<< HEAD
-      <ClipComponent clipDatas={clipDatas} user={userInfo} name={name}/>
-=======
       <ClipComponent clipDatas={clipDatas} user={userInfo} name={name} />
->>>>>>> ecd1a91d6fb4cbcd60e02fd14ae1ac1ff27ae2ee
     </Container>
   );
 };
