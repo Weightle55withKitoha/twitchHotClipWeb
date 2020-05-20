@@ -213,7 +213,7 @@ public class RankingTableService {
                     .broadcasterId(userInfo.getUserId())
                     .build();
 
-            log.info(tableInfoResponseDto.getStreamerName());
+            log.info("userName" +tableInfoResponseDto.getStreamerName());
 
             Optional<TableInfoDao> tableInfoDao=tableInfoRepository.findBystreamerName(curUserName);
 
