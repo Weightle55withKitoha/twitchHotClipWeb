@@ -57,7 +57,7 @@ function LowerTable(props) {
                       style={{ fontWeight: "bold", fontSize: "large" }}
                       align="center"
                     >
-                      {index + 1}
+                      {index + 1 + page*rowsPerPage}
                     </TableCell>
                     <TableCell className={classes.tablecell} align="center">
                       <StreamerProfileCol
