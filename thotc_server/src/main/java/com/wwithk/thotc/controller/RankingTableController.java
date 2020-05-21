@@ -32,6 +32,6 @@ public class RankingTableController {
 
     @GetMapping("/streams")
     public List<TableInfoDao> test() throws JsonProcessingException, ParseException, InterruptedException {
-        return tableInfoRepository.findAll();
+        return tableInfoRepository.findAllDesc();
     }
 }
